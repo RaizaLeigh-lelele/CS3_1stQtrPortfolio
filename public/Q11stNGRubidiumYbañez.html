@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lifetime Snack Supply Calculator</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: repeating-linear-gradient(
+        45deg,
+        #886324,
+        #cfc283 100px,
+        #856915 50px,
+        #796031 90px
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #337578;
+    }
+
+    #calculator {
+        background: #83cf8e;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgb(29, 95, 30);
+        text-align: center;
+        max-width: 400px;
+    }
+
+    h1 {
+      color: #248833;
+      margin-bottom: 10px;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #174e11;
+    }
+
+    .snack-emoji {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    #references {
+      margin-top: 50px;
+      max-width: 600px;
+      font-size: 14px;
+      padding: 20px;
+      background-color: #93d7e3;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(16, 72, 106);
+    }
+
+    #references h2 {
+      font-size: 16px;
+      color: #3f73af;
+      margin-bottom: 10px;
+    }
+
+    #references ul {
+      padding-left: 20px;
+    }
+
+    #references li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="calculator">
+    <div class="snack-emoji">🍫🍪🍟</div>
+    <h1>Snack Lifetime Calculator</h1>
+    <p id="result"></p>
+  </div>
+
+  <div id="references">
+    <h2>📚 References</h2>
+    <ul>
+      <li>Gradient Background: <a href="https://css-tricks.com/stripes-css/" target="_blank">Coyier, C. (2014, July 18). Stripes in CSS | CSS-Tricks. CSS-Tricks. https://css-tricks.com/stripes-css/</a></li>
+      <li>Variables - <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">(n.d.). JavaScript Variables. W3Schools.com. https://www.w3schools.com/js/js_variables.asp</a></li>
+      <li>rawr <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById" target="_blank">bro wtf</a></li>
+    </ul>
+  </div>
+
+  <script>
+    let age = 14;
+    let maxAge = 30;
+    let numPerDay = 3;
+
+    let totalRequired = (numPerDay * 365) * (maxAge - age);
+
+    document.getElementById("result").textContent =
+      "You will need " + totalRequired + " snacks to last you until the ripe old age of " + maxAge + ".";
+  </script>
+
+</body>
+</html>
