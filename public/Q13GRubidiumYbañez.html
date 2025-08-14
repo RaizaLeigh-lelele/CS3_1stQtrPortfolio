@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q13 Graded Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.1em;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 1em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #result {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #16a085;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Q1 3rd Graded Exercise submitted by Raiza Leigh Ybañez - Rb</h2>
+
+    <p>enter a number between 1-100!!!:</p>
+    <input type="number" id="userGuess" placeholder="type ur guess">
+    <button onclick="checkIt()">Check</button>
+
+    <p id="result"></p>
+
+    <script>
+        var dNumber = Math.floor(Math.random() * 100) + 1;
+
+        function checkIt() {
+            var guess = document.getElementById("userGuess").value;
+            guess = Number(guess);
+
+            if (guess < dNumber) {
+                document.getElementById("result").innerHTML = "Higher";
+                document.getElementById("result").style.color = "#e8391f";
+            } else if (guess > dNumber) {
+                document.getElementById("result").innerHTML = "Lower";
+                document.getElementById("result").style.color = "#c3292g";
+            } else {
+                document.getElementById("result").innerHTML = "You are correct!";
+                document.getElementById("result").style.color = "#20dhej";
+            }
+        }
+    </script>
+
+    <footer>
+        <p>(n.d.). how to style a javascript button. Stack Overflow. https://stackoverflow.com/questions/26618934/how-to-style-a-javascript-button</p>
+        <p>(2024, November 22). Java if statement. GeeksforGeeks. https://www.geeksforgeeks.org/java/java-if-statement-with-examples/</p>
+    </footer>
+
+</body>
+</html>
