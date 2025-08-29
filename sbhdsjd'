@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>input</title>
+
+  <label for="textbox">Enter your age</label>
+  
+
+</head>
+<body>
+
+  <div id="calculator">
+    <div class="snack-emoji">🍫🍪🍟</div>
+    <h1>Snack Lifetime Calculator</h1>
+    <p id="result"></p>
+  </div>
+
+  <div id="references">
+    <h2>📚 References</h2>
+    <ul>
+      <li>Gradient Background: <a href="https://css-tricks.com/stripes-css/" target="_blank">Coyier, C. (2014, July 18). Stripes in CSS | CSS-Tricks. CSS-Tricks. https://css-tricks.com/stripes-css/</a></li>
+      <li>Variables - <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">(n.d.). JavaScript Variables. W3Schools.com. https://www.w3schools.com/js/js_variables.asp</a></li>
+      <li>rawr <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById" target="_blank">bro wtf</a></li>
+    </ul>
+  </div>
+
+</head>
+<body>
+</html>
