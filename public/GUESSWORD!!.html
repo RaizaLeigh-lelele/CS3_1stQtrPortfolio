@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<title>Guess my word!</title>
+<h2>lelelelele</h2>
+<style>
+  body {
+    background-color: #7deaf6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url('https://i.pinimg.com/736x/6e/35/ca/6e35ca6a6b287a467bdfd95c4b74f07c.jpg');
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  h1 {
+    color: #0e393d;
+    font-size: 100px;
+    margin-bottom: 20px;
+  }
+
+  #wordDisplay {
+    font-size: 80px;
+    letter-spacing: 15px;
+    margin: 30px 0;
+  }
+
+  #guessedLetters {
+    font-size: 40px;
+    margin-top: 25px;
+    color: #2f2f2f;
+  }
+
+  #message {
+    font-size: 60px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  #message.correct {
+    color: green;
+  }
+
+  #message.wrong {
+    color: red;
+  }
+
+  #winMessage {
+    font-size: 120px;
+    color: rgb(143, 40, 156);
+    margin-top: 40px;
+    font-weight: bold;
+    animation: pop 1s infinite alternate;
+    display: none;
+  }
+
+  #gameOver {
+    font-size: 100px;
+    color: rgb(168, 109, 13);
+    margin-top: 40px;
+    font-weight: bold;
+    display: none;
+  }
+
+  .resultImage {
+    display: none;
+    margin-top: 20px;
+    width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  }
+
+  @keyframes pop {
+    from {
+      transform: scale(1);
+      color: rgb(159, 61, 181);
+    }
+    to {
+      transform: scale(1.2);
+      color: rgb(100, 22, 132);
+    }
+  }
+
+  #attempts {
+    font-size: 50px;
+    margin-top: 20px;
+    color: #0b3f49;
+  }
+
+  input {
+    font-size: 50px;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+  }
+
+  button {
+    font-size: 40px;
+    padding: 15px 30px;
+    margin: 20px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    background-color: #4a86a9;
+    color: white;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background-color: #376887;
+  }
+
+  .box {
+    background-color: #4a86a9;
+    padding: 40px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-top: 40px;
+    box-shadow: 0 6px 18px rgba(49, 87, 125, 0.742);
+  }
+
+  img {
+    margin-top: 20px;
+    width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(46, 161, 163, 0.719);
+    transition: transform 0.3s ease;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+  }
+</style>
+
+<h1>Guess My Word</h1>
+<p id="wordDisplay"></p>
+<input type="text" id="guessInput" maxlength="1">
+<button onclick="makeGuess()">Guess</button>
+<button onclick="playAgain()">Play Again</button>
+<p id="message"></p>
+<p id="guessedLetters">Guessed Letters: </p>
+<p id="attempts">Attempts left: 3</p>
+<p id="winMessage">🎉 YOU WIN! s-so kawaii!! 🎉</p>
+<p id="gameOver"> GAME OVER... SOBS</p>
+
+<img id="winImage" class="resultImage" src="https://media.tenor.com/oH5e8nKhHvwAAAAC/yippee-yippee-gif.gif" style="text-align: center;">
+<img id="gameOverImage" class="resultImage" src="https://media1.tenor.com/images/c481aa4704e788c849f8f4413efd0321/tenor.gif?itemid=17801567" style="text-align: center;"">
+
+<script>
+  let secretWord = ["r", "e", "h", "a", "b", "i", "l", "i", "t", "a", "t", "i", "o", "n", "r", "a", "i", "z", "a"];
+  let guessedWord = Array(secretWord.length).fill("_");
+  let guessedLetters = [];
+  let attemptsLeft = 3;
+
+  document.getElementById("wordDisplay").textContent = guessedWord.join(" ");
+
+  function makeGuess() {
+    let guess = document.getElementById("guessInput").value.toLowerCase();
+    let correct = false;
+
+    if (guess && !guessedLetters.includes(guess)) {
+      guessedLetters.push(guess);
+
+      for (let i = 0; i < secretWord.length; i++) {
+        if (secretWord[i] === guess) {
+          guessedWord[i] = guess;
+          correct = true;
+        }
+      }
+
+      if (!correct) {
+        attemptsLeft--;
+      }
+    }
+
+    document.getElementById("wordDisplay").textContent = guessedWord.join(" ");
+    document.getElementById("guessedLetters").textContent = "Guessed Letters: " + guessedLetters.join(", ");
+    document.getElementById("attempts").textContent = "Attempts left: " + attemptsLeft;
+
+    let msg = document.getElementById("message");
+    msg.textContent = correct ? "✅ Correct!" : "❌ Try again.";
+    msg.className = correct ? "correct" : "wrong";
+
+    document.getElementById("guessInput").value = "";
+
+    if (!guessedWord.includes("_")) {
+      document.getElementById("winMessage").style.display = "block";
+      document.getElementById("winImage").style.display = "block";
+      msg.textContent = "";
+      document.getElementById("guessInput").disabled = true;
+    } else if (attemptsLeft <= 0) {
+      document.getElementById("gameOver").style.display = "block";
+      document.getElementById("gameOverImage").style.display = "block";
+      msg.textContent = "";
+      document.getElementById("guessInput").disabled = true;
+    }
+  }
+
+  function playAgain() {
+    guessedWord = Array(secretWord.length).fill("_");
+    guessedLetters = [];
+    attemptsLeft = 8;
+    document.getElementById("wordDisplay").textContent = guessedWord.join(" ");
+    document.getElementById("guessedLetters").textContent = "Guessed Letters: ";
+    document.getElementById("attempts").textContent = "Attempts left: " + attemptsLeft;
+    document.getElementById("message").textContent = "";
+    document.getElementById("winMessage").style.display = "none";
+    document.getElementById("gameOver").style.display = "none";
+    document.getElementById("winImage").style.display = "none";
+    document.getElementById("gameOverImage").style.display = "none";
+    document.getElementById("guessInput").disabled = false;
+  }
+</script>
+
+<div class="box">
+  <img src="https://i.pinimg.com/736x/1e/f1/a3/1ef1a3fd8f5b10be22fb20d960c5b7ee.jpg" alt="send mental help">
+</div>
