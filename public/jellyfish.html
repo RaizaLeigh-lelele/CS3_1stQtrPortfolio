@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Jelly World!</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: url("https://cdn.wallpapersafari.com/39/8/PI9pKS.jpg") no-repeat center center / cover;
+    }
+
+    .ocean {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .jellyfish {
+      position: absolute;
+      width: var(--size, 120px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      filter: drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 16px var(--neon));
+      animation: var(--swim) var(--speed, 20s) linear infinite;
+    }
+
+    .bell {
+      width: 100%;
+      height: calc(var(--size) * 0.7);
+      border-radius: 50% 50% 45% 45%;
+      background: var(--neon);
+      animation: breathe 3s ease-in-out infinite, colorShift var(--cSpeed, 8s) linear infinite;
+      opacity: .85;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.05); }
+    }
+
+    .tentacle-wrap {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: -4px;
+    }
+
+    .tentacle {
+      width: 4px;
+      height: calc(var(--size) * 1.2);
+      border-radius: 2px;
+      background: var(--neon);
+      animation: sway 3s ease-in-out infinite, tentColor var(--cSpeed, 8s) linear infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes sway {
+      0% { transform: rotate(-6deg); }
+      50% { transform: rotate(6deg); }
+      100% { transform: rotate(-6deg); }
+    }
+
+    @keyframes colorShift {
+      0% { background: var(--neon); }
+      25% { background: var(--neon2); }
+      50% { background: var(--neon3); }
+      75% { background: var(--neon4); }
+      100% { background: var(--neon); }
+    }
+
+    @keyframes tentColor {
+      0% { background: var(--neon); }
+      25% { background: var(--neon2); }
+      50% { background: var(--neon3); }
+      75% { background: var(--neon4); }
+      100% { background: var(--neon); }
+    }
+
+    @keyframes swim-right {
+      0% { transform: translate(-40vw, var(--y, 50vh)); }
+      100% { transform: translate(120vw, var(--y, 50vh)); }
+    }
+
+    @keyframes swim-left {
+      0% { transform: translate(120vw, var(--y, 50vh)); }
+      100% { transform: translate(-40vw, var(--y, 50vh)); }
+    }
+
+    @keyframes swim-up {
+      0% { transform: translate(var(--x, 50vw), 110vh); }
+      100% { transform: translate(var(--x, 50vw), -20vh); }
+    }
+
+    @keyframes swim-down {
+      0% { transform: translate(var(--x, 50vw), -20vh); }
+      100% { transform: translate(var(--x, 50vw), 110vh); }
+    }
+
+    @keyframes swim-up-right {
+      0% { transform: translate(-20vw, 110vh); }
+      100% { transform: translate(120vw, -20vh); }
+    }
+
+    @keyframes swim-up-left {
+      0% { transform: translate(120vw, 110vh); }
+      100% { transform: translate(-20vw, -20vh); }
+    }
+
+    @keyframes swim-down-right {
+      0% { transform: translate(-20vw, -20vh); }
+      100% { transform: translate(120vw, 110vh); }
+    }
+
+    @keyframes swim-down-left {
+      0% { transform: translate(120vw, -20vh); }
+      100% { transform: translate(-20vw, 110vh); }
+    }
+
+    .frilly .bell {
+      border-radius: 60% 60% 50% 50%;
+    }
+
+    .frilly .tentacle {
+      width: 2px;
+      animation-duration: 2s;
+    }
+
+    .stubby .bell {
+      height: calc(var(--size) * 0.5);
+    }
+
+    .stubby .tentacle {
+      width: 6px;
+      height: calc(var(--size));
+    }
+
+    .elegant .bell {
+      height: calc(var(--size) * 0.9);
+      border-radius: 40% 40% 35% 35%;
+    }
+
+    .elegant .tentacle {
+      height: calc(var(--size) * 1.6);
+      animation-duration: 4s;
+    }
+
+    .scrolling-text {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 70px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 8px #0ff, 0 0 16px #0ff;
+      animation: scrollUp 15s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes scrollUp {
+      0% { top: 100%; }
+      100% { top: -20%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ocean" id="ocean"></div>
+
+  <div class="scrolling-text">Jellyfish lack a heart, brain, and bones! And they might also be older than dinosaurs!</div>
+
+  <script>
+    const palettes = [
+      ["#00eaff", "#ff6bd6", "#7cff6b", "#ffd36b"],
+      ["#ff9b6b", "#7c5cff", "#6be0ff", "#ff6b9b"],
+      ["#b28cff", "#4de0ff", "#ffd36b", "#7cff6b"]
+    ];
+
+    const types = ["classic", "frilly", "stubby", "elegant"];
+    const moves = [
+      "swim-right", "swim-left", "swim-up", "swim-down",
+      "swim-up-right", "swim-up-left", "swim-down-right", "swim-down-left"
+    ];
+
+    const ocean = document.getElementById("ocean");
+
+    function makeJellyfish() {
+      const j = document.createElement("div");
+      j.className = "jellyfish " + types[Math.floor(Math.random() * types.length)];
+
+      const pal = palettes[Math.floor(Math.random() * palettes.length)];
+      j.style.setProperty("--neon", pal[0]);
+      j.style.setProperty("--neon2", pal[1]);
+      j.style.setProperty("--neon3", pal[2]);
+      j.style.setProperty("--neon4", pal[3]);
+      j.style.setProperty("--size", (70 + Math.random() * 100) + "px");
+      j.style.setProperty("--speed", (12 + Math.random() * 20) + "s");
+      j.style.setProperty("--cSpeed", (6 + Math.random() * 8) + "s");
+      j.style.setProperty("--y", Math.floor(Math.random() * 80 + 10) + "vh");
+      j.style.setProperty("--x", Math.floor(Math.random() * 80 + 10) + "vw");
+      j.style.setProperty("--swim", moves[Math.floor(Math.random() * moves.length)]);
+
+      const bell = document.createElement("div");
+      bell.className = "bell";
+
+      const wrap = document.createElement("div");
+      wrap.className = "tentacle-wrap";
+
+      const n = 3 + Math.floor(Math.random() * 6);
+      for (let i = 0; i < n; i++) {
+        const t = document.createElement("span");
+        t.className = "tentacle";
+        t.style.animationDelay = (Math.random() * 1.5) + "s";
+        wrap.appendChild(t);
+      }
+
+      j.appendChild(bell);
+      j.appendChild(wrap);
+      ocean.appendChild(j);
+
+      setTimeout(() => j.remove(), 40000);
+    }
+
+    setInterval(makeJellyfish, 2000);
+  </script>
+</body>
+</html>
