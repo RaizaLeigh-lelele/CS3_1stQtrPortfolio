@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<title>Guess my word!</title>
+<style>
+    body {
+      background-color: #66b191;
+      background-color: #1d7952;
+      background-image: url('https://tse3.mm.bing.net/th/id/OIP.omj_e6e0lj23mcSw7IWAdAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3');
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+  
+    h1 {
+      color: #616161;
+      font-size: 36px;
+    }
+  
+    p {
+      color: #000000;
+      font-size: 18px;
+    }
+
+    img {
+      margin-top: 20px;
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.719);
+      transition: transform 0.3s ease;
+    }
+  
+    img:hover {
+      transform: scale(1.05);
+    }
+  
+    .box {
+      background-color: #6ac561;
+      padding: 30px;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(182, 219, 199, 0.742);
+    }
+</style>
+
+<h1>Guess My Word</h1>
+<p id="wordDisplay"></p>
+<input type="text" id="guessInput" maxlength="1">
+<button onclick="makeGuess()">Guess</button>
+<p id="message"></p>
+
+<script>
+  let secretWord = ["r", "e", "h", "a", "b", "i", "l", "i", "t", "a", "t", "i", "o", "n"];
+  let guessedWord = ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"];
+
+  document.getElementById("wordDisplay").textContent = guessedWord.join(" ");
+
+  function makeGuess() {
+    let guess = document.getElementById("guessInput").value.toLowerCase();
+    let correct = false;
+
+    for (let i = 0; i < secretWord.length; i++) {
+      if (secretWord[i] === guess) {
+        guessedWord[i] = guess;
+        correct = true;
+      }
+    }
+
+    document.getElementById("wordDisplay").textContent = guessedWord.join(" ");
+    document.getElementById("message").textContent = correct ? "✅ Correct!" : "❌ Try again.";
+    document.getElementById("guessInput").value = "";
+
+  }
+</script>
+
+<div class="box">
+    <h1>send mental help</h1>
+  
+    <img src="https://tse3.mm.bing.net/th/id/OIP.omj_e6e0lj23mcSw7IWAdAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="send mental help" width="1000">
+</div>

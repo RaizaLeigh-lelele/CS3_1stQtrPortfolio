@@ -1,0 +1,9 @@
+    let guessedLetters = [];
+
+    function addGuess() {
+        let letter = document.getElementById("letterInput").value;
+        if (letter && !GUES)
+        guessedLetters.push(letter);
+        document.getElementById("guesses").textContent = guessedLetters.join(", ");
+        document
+    }
