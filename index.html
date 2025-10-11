@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animation Sequence</title>
+<title>Loading Screen</title>
 <style>
   body {
     margin: 0;
@@ -63,17 +63,21 @@
 </style>
 </head>
 <body>
-  <section class="w3-container">
-   <h1>Links to Ybañez's work</h1>
-   <nav>
-    <ul>
-      <li><a href="./public/Q1_1stGraded.html"> Click here for free robux!! </a> </li>
-      <li><a href="http://127.0.0.1:5500/public/Q11stNGRubidiumYba%C3%B1ez.html"> Ouh sir its teh ungraded one</a> </li> 
-      <li><a href="http://127.0.0.1:5500/public/Q12GRubidiumYbanez.html"> 2nd graded exercise</a></li>
-      <li><a href="./public/Q13GRubidiumYbañez.html"> 3rd graded exercise </a>
-      <li><a href="http://127.0.0.1:5500/public/GUESSWORD!!.html"> bosnus</a></li>
-    </ul>
-   </nav>
-  </section>
+
+<img id="image" src="https://i.redd.it/7jt274dvw7fc1.jpeg" alt="Gojo's infinite void hand LMFAO">
+<div id="circle"></div>
+<div id="text">Click this text :33 no sir jjk is not my fav anime</div>
+
+<script>
+  const text = document.getElementById("text");
+  text.addEventListener("click", () => {
+    window.location.href = " ";
+  });
+
+  document.body.addEventListener("click", () => {
+    window.location.href = " ";
+  });
+</script>
+
 </body>
 </html>
