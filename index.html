@@ -1,22 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Ybañez's Portfolio</title>
-  <title>Ybañez Portfolio</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animation Sequence</title>
+<style>
+  body {
+    margin: 0;
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  #image {
+    width: 1200px;
+    height: 1200px;
+  }
+
+  #circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px 10px rgb(0, 0, 0), 0 0 60px 20px rgb(255, 255, 255);
+    background: radial-gradient(circle, #848484, #b2b2b2);
+    opacity: 0;
+    transform: scale(0);
+    animation: circleExpand 2s ease-in-out forwards;
+    animation-delay: 2s;
+  }
+
+  @keyframes circleExpand {
+    0% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(20);
+    }
+  }
+
+  #text {
+    position: absolute;
+    color: rgb(180, 193, 235);
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    text-shadow: 0 0 10px rgb(0, 32, 128), 0 0 20px rgb(64, 32, 138);
+    opacity: 0;
+    animation: showText 1s ease-in forwards;
+    animation-delay: 4s;
+    cursor: pointer;
+  }
+
+  @keyframes showText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
 </head>
 <body>
-  <section class="w3-container">
-   <h1>Links to Ybañez's work</h1>
-   <nav>
-    <ul>
-      <li><a href="./public/Q1_1stGraded.html"> Click here for free robux!! </a> </li>
-      <li><a href="http://127.0.0.1:5500/public/Q11stNGRubidiumYba%C3%B1ez.html"> Ouh sir its teh ungraded one</a> </li> 
-      <li><a href="http://127.0.0.1:5500/public/Q12GRubidiumYbanez.html"> 2nd graded exercise</a></li>
-      <li><a href="./public/Q13GRubidiumYbañez.html"> 3rd graded exercise </a>
-      <li><a href="http://127.0.0.1:5500/public/GUESSWORD!!.html"> bosnus</a></li>
-    </ul>
-   </nav>
-  </section>
+
+<img id="image" src="https://i.redd.it/7jt274dvw7fc1.jpeg" alt="Gojo's infinite void hand LMFAO">
+<div id="circle"></div>
+<div id="text">Click this text :33 no sir jjk is not my fav anime</div>
+
+<script>
+  const text = document.getElementById("text");
+  text.addEventListener("click", () => {
+    window.location.href = "https://example.com";
+  });
+
+  document.body.addEventListener("click", () => {
+    window.location.href = "https://example.com";
+  });
+</script>
+
 </body>
 </html>

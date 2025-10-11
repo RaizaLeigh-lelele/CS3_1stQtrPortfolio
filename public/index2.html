@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ybañez's 2nd CS3 Portfolio</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: #e0e0ff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      position: relative;
+    }
+
+    .background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("https://www.dexerto.com/cdn-image/wp-content/uploads/2023/07/11/jujutsu-kaisen-season-2-op.jpeg?width=1200&quality=60&format=auto") center/cover no-repeat;
+      opacity: 1;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at center, rgba(159, 165, 170, 0.84), rgba(91, 87, 93, 0.9));
+      z-index: 0;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.6rem;
+      background: linear-gradient(90deg, #09234e, #0c5969, #2a085d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #6b5bff, 0 0 40px #4be0ff;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .link-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px 50px;
+      margin-top: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(75, 0, 130, 0.5), 0 0 50px rgba(0, 255, 255, 0.3);
+      animation: fadeInUp 1.3s ease forwards;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin: 15px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #d9eaff;
+      font-weight: 500;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #7bdfff;
+      text-shadow: 0 0 10px #7bdfff, 0 0 25px #9f73ff;
+    }
+
+    .gif-section {
+      position: relative;
+      z-index: 2;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .gif-section img {
+      width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px #7b68ee, 0 0 50px #00ffff;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .glow-border {
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(155, 89, 182, 0.4);
+      box-shadow: 0 0 40px rgba(75, 0, 130, 0.5), 0 0 80px rgba(0, 255, 255, 0.2);
+      pointer-events: none;
+      z-index: 1;
+      animation: glow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 30px #7f00ff, 0 0 60px #00ffff; }
+      to { box-shadow: 0 0 60px #00ffff, 0 0 90px #7f00ff; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="background-img"></div>
+  <div class="overlay"></div>
+  <div class="glow-border"></div>
+
+  <section class="w3-container">
+    <h1>💙 Ybañezs 2nd CS3 Portfolio 💜</h1>
+    
+    <div class="gif-section">
+      <img src="https://media1.tenor.com/m/VKIKj5A3_6wAAAAC/gojo-satoru-gojo-fish.gif" alt="Gojo betta fish scene">
+    </div>
+
+    <div class="link-box">
+      <ul>
+        <li><a href="code1.html" target="_blank">🤎 Ash's schedule!</a></li>
+        <li><a href="code2.html" target="_blank">💙 Raiza's schedule!</a></li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
